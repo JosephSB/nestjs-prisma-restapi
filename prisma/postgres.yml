@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres
+    container_name: postgres-db-dev
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: testdb
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: passwrd
+    ports:
+      - 5432:5432
+    networks:
+      - app-admin-network
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    container_name: pgadmin-dev
+    environment:
+      PGADMIN_DEFAULT_EMAIL: app2@testdb.pe
+      PGADMIN_DEFAULT_PASSWORD: 123456
+    ports:
+      - 80:80
+    networks:
+      - app-admin-network
+
+networks:
+  app-admin-network:

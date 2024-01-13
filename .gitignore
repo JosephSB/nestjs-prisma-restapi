@@ -2,6 +2,12 @@
 /dist
 /node_modules
 
+# ignore postgres local db
+/prisma/postgres
+
+# envieroments
+.env
+
 # Logs
 logs
 *.log
