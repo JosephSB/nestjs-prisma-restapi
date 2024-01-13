@@ -13,11 +13,11 @@
     "paths": {
 			"@app/*": ["app/*"],
 			"@common/*": ["libs/common/*"],
-			"@libs/prisma": ["libs/prisma/prisma.module.ts"],
+			"@libs/prisma": ["libs/prisma/*"],
 			"@libs/zod": ["libs/zod/index.ts"]
 		},
 
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,

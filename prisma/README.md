@@ -6,5 +6,9 @@
 ## RUN MIGRATIONS: 
 - RUN `npx prisma migrate dev --name init`
 
+## GENERATE PRISMA CLIENT: 
+- RUN `npx prisma generate`
+- RUN `npx prisma db push`
+
 ## RUN SEEDERS: 
 
