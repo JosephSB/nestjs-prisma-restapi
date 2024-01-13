@@ -9,6 +9,14 @@
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
+
+    "paths": {
+			"@app/*": ["app/*"],
+			"@common/*": ["libs/common/*"],
+			"@libs/prisma": ["libs/prisma/prisma.module.ts"],
+			"@libs/zod": ["libs/zod/index.ts"]
+		},
+
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
@@ -17,5 +25,6 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
-  }
+  },
+  "include": ["src"]
 }
