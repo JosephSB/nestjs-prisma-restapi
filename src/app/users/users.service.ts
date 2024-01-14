@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from '../../libs/prisma/prisma.service';
+import { BcryptAdapter } from '../../libs/bycript/bycript.adapter';
 
 @Injectable()
 export class UsersService {
@@ -12,7 +13,7 @@ export class UsersService {
       data: {
         username: createUserDto.username,
         email: createUserDto.email,
-        password: createUserDto.password,
+        password: BcryptAdapter.hash(createUserDto.password),
         roles: {
           create: [{ role: { connect: { name: createUserDto.role } } }],
         },
@@ -25,6 +26,19 @@ export class UsersService {
 
   findAll() {
     return `This action returns all users`;
+  }
+
+  async findByEmail(email: string) {
+    const user = await this.prisma.user.findFirst({
+      where: { email: email },
+      include: { roles: true },
+    });
+
+    return user;
+  }
+
+  findByUsername(username: string) {
+    return `This action returns a #${username} user`;
   }
 
   findOne(id: number) {
