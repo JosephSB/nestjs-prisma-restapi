@@ -13,7 +13,7 @@
     "paths": {
 			"@app/*": ["app/*"],
 			"@common/*": ["libs/common/*"],
-			"@libs/prisma": ["libs/prisma/*"],
+			"@prisma": ["libs/prisma/*"],
 			"@libs/zod": ["libs/zod/index.ts"]
 		},
 

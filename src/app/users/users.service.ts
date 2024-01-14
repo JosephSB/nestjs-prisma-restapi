@@ -8,17 +8,15 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   async create(createUserDto: CreateUserDto) {
-    const role = await this.prisma.role.findFirst({ where: { name: 'USER' } });
-    const status = await this.prisma.status.findFirst({
-      where: { name: 'ACTIVE' },
-    });
-
     const newUser = await this.prisma.user.create({
       data: {
         username: createUserDto.username,
         email: createUserDto.email,
-        roles: { create: [{ role: { connect: { id: role.id } } }] },
-        status: { connect: { id: status.id } },
+        password: createUserDto.password,
+        roles: {
+          create: [{ role: { connect: { name: createUserDto.role } } }],
+        },
+        status: { connect: { name: createUserDto.status } },
       },
     });
 
