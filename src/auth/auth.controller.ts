@@ -6,12 +6,15 @@ import {
   VERSION_NEUTRAL,
   BadRequestException,
   UnauthorizedException,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { UsersService } from '@app/users/users.service';
 import { BcryptAdapter } from '../libs/bycript/bycript.adapter';
 import { JwtService } from '@nestjs/jwt';
+import { AuthGuard } from './auth.guard';
 
 @Controller({
   path: 'auth',
@@ -59,8 +62,10 @@ export class AuthController {
     return { ...newUser, password: null };
   }
 
+  @UseGuards(AuthGuard)
   @Get('/me')
-  findOne() {
-    //return this.authService.findOne();
+  async findOne(@Request() req) {
+    const user = await this.usersService.findByEmail(req.user.email);
+    return { ...user, password: null };
   }
 }
