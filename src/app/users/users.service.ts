@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from '../../libs/prisma/prisma.service';
@@ -6,7 +6,10 @@ import { BcryptAdapter } from '../../libs/bycript/bycript.adapter';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    @Inject('GLOBAL_KEY') private globalKey: string,
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     const newUser = await this.prisma.user.create({
