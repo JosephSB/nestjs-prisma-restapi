@@ -12,7 +12,7 @@ import {
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { UsersService } from '@app/users/users.service';
-import { BcryptAdapter } from '../libs/bycript/bycript.adapter';
+import { BcryptAdapter } from '../../libs/bycript/bycript.adapter';
 import { JwtService } from '@nestjs/jwt';
 import { AuthGuard } from './auth.guard';
 
